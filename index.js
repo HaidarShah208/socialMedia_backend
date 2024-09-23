@@ -5,6 +5,8 @@ import postRouter from './routes/postRoute.js'
 import userRouter from './routes/userRoute.js'
 import cookieParser from "cookie-parser";
 import cors from 'cors'
+import serverless from 'serverless-http'
+
 dotenv.config({ path: "./.env" });
 
 export const envMode = process.env.NODE_ENV?.trim() || "DEVELOPMENT";
@@ -28,6 +30,4 @@ app.get('/', (req, res) =>{
 
 app.use('/api', postRouter);
 app.use('/api', userRouter);
-app.listen(port, () => {
-    console.log(`Server running at port ${port}`);
-  });
+export const handler = serverless(app);
