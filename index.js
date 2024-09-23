@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 import cors from 'cors'
 import serverless from 'serverless-http'
 
+
 dotenv.config({ path: "./.env" });
 
 export const envMode = process.env.NODE_ENV?.trim() || "DEVELOPMENT";
@@ -17,7 +18,7 @@ connectDB(mongodbUrl)
 const app= express();
 
 app.use(cors({
-    origin:'http://localhost:3000',
+    origin:process.env.CORS_ORIGIN,
     credentials:true,
 }))
 app.use(express.json());
@@ -30,4 +31,6 @@ app.get('/', (req, res) =>{
 
 app.use('/api', postRouter);
 app.use('/api', userRouter);
-export const handler = serverless(app);
+app.listen(port, () => {
+    console.log(`Server running at port ${port}`);
+  });
