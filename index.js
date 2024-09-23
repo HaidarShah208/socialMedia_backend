@@ -5,7 +5,7 @@ import postRouter from './routes/postRoute.js'
 import userRouter from './routes/userRoute.js'
 import cookieParser from "cookie-parser";
 import cors from 'cors'
-import serverless from 'serverless-http'
+
 
 
 dotenv.config({ path: "./.env" });
