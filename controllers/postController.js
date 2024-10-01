@@ -14,6 +14,10 @@ const newPostData={
   owner: req.user._id,
 }    
 const newPost=await Post.create(newPostData)
+
+
+
+
 const user= await User.findById(req.user._id)
     user.post.push(newPost._id)
     await user.save()
